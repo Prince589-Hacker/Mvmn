@@ -32,9 +32,9 @@ app.get('/stream.m3u8', async (req, res) => {
 
     // Rewrite the URLs in the playlist to point to /segments/ on our server
     const rewrittenPlaylist = originalPlaylist.replace(
-      /https:\/\/userx3565\.hls-video\.net\/ts1\/token\/[^/]+\/(tn478cnu2o0q_\d+)\?token=[^ \n]+/g,
-      (match, segment) => `/segments/${segment}`
-    );
+      /https:\/\/userx3565\.hls-video\.net\/ts1\/token\/[^/]+\/([^?]+)\?token=[^ \n]+/g,
+      (match, segment) => `/segments/${segment}`
+    );    
 
     res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
     res.send(rewrittenPlaylist);
