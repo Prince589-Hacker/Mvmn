@@ -48,7 +48,7 @@ app.get('/segments/:segment', async (req, res) => {
   const segment = req.params.segment;
   const segmentUrl = `https://user65473.hls-video.net/user/token/a3f0c81db39d64f85b6f6a5cfaa1b2ce/${segment}?token=${token}`;
 
-  console.log(segmentUrl);
+  
 
   try {
     const response = await axios.get(segmentUrl, {
@@ -57,9 +57,9 @@ app.get('/segments/:segment', async (req, res) => {
     });
     res.setHeader('Content-Type', 'video/MP2T');
     response.data.pipe(res);
+    console.log('s'+segmentUrl);
   } catch (error) {
-    console.error(`Error fetching segment ${segment}:`, error);
-    res.status(500).send('Segment not found');
+    console.log('f'+segmentUrl);
   }
 });
 
