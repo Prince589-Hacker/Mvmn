@@ -32,11 +32,10 @@ app.get('/stream.m3u8', async (req, res) => {
     // Rewrite the URLs in the playlist to point to /segments/ on our server
     const rewrittenPlaylist = originalPlaylist.replace(
       /https:\/\/userx3565\.hls-video\.net\/ts1\/token\/[^/]+\/([^?]+)\?token=[^ \n]+/g,
-      (match, segment) => `/segments/${segment}`
+      (match, segment) => '/segments/${segment}'
     );    
 
     res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
-    res.setHeader('Cache-Control', 'no-store');
     res.send(rewrittenPlaylist);
   } catch (error) {
     console.error('Error fetching or rewriting playlist:', error);
