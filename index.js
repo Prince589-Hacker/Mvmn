@@ -36,6 +36,7 @@ app.get('/stream.m3u8', async (req, res) => {
     );    
 
     res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
+    res.setHeader('Cache-Control', 'no-store');
     res.send(rewrittenPlaylist);
   } catch (error) {
     console.error('Error fetching or rewriting playlist:', error);
